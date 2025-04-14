@@ -3,7 +3,7 @@
 #include <freertos/task.h>
 
 BluetoothSerial SerialBT;
-#define LED_PIN 2  // D22 pin on ESP32
+#define LED_PIN 4  // D22 pin on ESP32
 int counter=0;
 
 void readTask(void *pvParameters) {
