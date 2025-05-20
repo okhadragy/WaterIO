@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int goalSips = 10;
   double percentageGoal = 0;
   bool ledOn = false;
-  String username = "Erfan";
+  String username = "User";
   BluetoothConnection? connection;
   bool isConnected = false;
   String buffer = '';
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     box = Hive.box('myBox');
     totalSips = box.get('totalSips', defaultValue: 0);
     goalSips = box.get('goalSips', defaultValue: 10);
-    username = box.get('username', defaultValue: "Erfan");
+    username = box.get('username', defaultValue: "User");
     percentageGoal = (totalSips / goalSips) * 100;
     checkPermissions(); // Check permissions on startup
   }
@@ -71,11 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void checkPermissions() async {
     PermissionStatus bluetoothStatus = await Permission.bluetooth.request();
     PermissionStatus bluetoothConnectStatus =
-        await Permission.bluetoothConnect.request();
+    await Permission.bluetoothConnect.request();
     PermissionStatus locationStatus =
-        await Permission.locationWhenInUse.request();
+    await Permission.locationWhenInUse.request();
     PermissionStatus bluetoothScanStatus =
-        await Permission.bluetoothScan.request();
+    await Permission.bluetoothScan.request();
 
     if (bluetoothStatus.isGranted &&
         bluetoothConnectStatus.isGranted &&
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     List<BluetoothDevice> pairedDevices =
-        await FlutterBluetoothSerial.instance.getBondedDevices();
+    await FlutterBluetoothSerial.instance.getBondedDevices();
     BluetoothDevice? espDevice;
     for (BluetoothDevice device in pairedDevices) {
       if (device.name != null && device.name!.toLowerCase().contains("esp")) {
@@ -115,23 +115,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
         connection!.input!
             .listen((data) {
-              buffer += ascii.decode(data);
-              int index;
-              while ((index = buffer.indexOf('\n')) != -1) {
-                final line = buffer.substring(0, index).trim();
-                buffer = buffer.substring(index + 1);
+          buffer += ascii.decode(data);
+          int index;
+          while ((index = buffer.indexOf('\n')) != -1) {
+            final line = buffer.substring(0, index).trim();
+            buffer = buffer.substring(index + 1);
 
-                setState(() {
-                  if (line == "Sip") incrementSips();
-                });
-              }
-            })
-            .onDone(() {
-              print('Disconnected by ESP');
-              setState(() {
-                isConnected = false;
-              });
+            setState(() {
+              if (line == "Sip") incrementSips();
             });
+          }
+        })
+            .onDone(() {
+          print('Disconnected by ESP');
+          setState(() {
+            isConnected = false;
+          });
+        });
       } catch (e) {
         print('Connection failed: $e');
         setState(() {
@@ -182,25 +182,25 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: const Text('Edit Username'),
-            content: TextField(
-              autofocus: true,
-              decoration: const InputDecoration(hintText: 'Enter new name'),
-              onChanged: (value) => newName = value,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    username = newName;
-                    box.put('username', username);
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Save'),
-              ),
-            ],
+        title: const Text('Edit Username'),
+        content: TextField(
+          autofocus: true,
+          decoration: const InputDecoration(hintText: 'Enter new name'),
+          onChanged: (value) => newName = value,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              setState(() {
+                username = newName;
+                box.put('username', username);
+              });
+              Navigator.of(context).pop();
+            },
+            child: const Text('Save'),
           ),
+        ],
+      ),
     );
   }
 
@@ -210,30 +210,30 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder:
           (context) => AlertDialog(
-            title: const Text('Edit Goal Sips'),
-            content: TextField(
-              autofocus: true,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(hintText: 'Enter new goal'),
-              onChanged: (value) => newGoal = value,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  int? parsedGoal = int.tryParse(newGoal);
-                  if (parsedGoal != null && parsedGoal > 0) {
-                    setState(() {
-                      goalSips = parsedGoal;
-                      box.put('goalSips', goalSips);
-                      percentageGoal = (totalSips / goalSips) * 100;
-                    });
-                  }
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Save'),
-              ),
-            ],
+        title: const Text('Edit Goal Sips'),
+        content: TextField(
+          autofocus: true,
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(hintText: 'Enter new goal'),
+          onChanged: (value) => newGoal = value,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              int? parsedGoal = int.tryParse(newGoal);
+              if (parsedGoal != null && parsedGoal > 0) {
+                setState(() {
+                  goalSips = parsedGoal;
+                  box.put('goalSips', goalSips);
+                  percentageGoal = (totalSips / goalSips) * 100;
+                });
+              }
+              Navigator.of(context).pop();
+            },
+            child: const Text('Save'),
           ),
+        ],
+      ),
     );
   }
 
@@ -315,9 +315,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Builder(
                   builder:
                       (context) => IconButton(
-                        icon: const Icon(Icons.menu, color: Colors.lightBlue),
-                        onPressed: () => Scaffold.of(context).openDrawer(),
-                      ),
+                    icon: const Icon(Icons.menu, color: Colors.lightBlue),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                  ),
                 ),
               ],
             ),
@@ -391,21 +391,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton(
-                        onPressed: incrementSips,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          minimumSize: const Size(double.infinity, 48),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Text(
-                          'Drink More Water (Add Sip)',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      Text(
+                        'Avg amount of drunk water = ${(totalSips * 25).toStringAsFixed(0)} ml',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
                     ],
@@ -418,9 +409,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: toggleLED,
               style: ElevatedButton.styleFrom(
                 backgroundColor:
-                    ledOn
-                        ? Colors.red
-                        : const Color.fromARGB(255, 50, 235, 120),
+                ledOn
+                    ? Colors.red
+                    : const Color.fromARGB(255, 50, 235, 120),
                 minimumSize: const Size(double.infinity, 48),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
