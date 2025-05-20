@@ -2,7 +2,6 @@
 
 A **Waterio** system designed using **ESP32**, **Load Cell**, and a **Flutter** mobile app. This educational and practical project demonstrates IoT integration for tracking hydration by calculating the number of **sips** consumed through real-time weight sensing and Bluetooth communication.
 
----
 
 ## 🚀 Features
 
@@ -13,7 +12,6 @@ A **Waterio** system designed using **ESP32**, **Load Cell**, and a **Flutter** 
 * Daily Hydration Goal Tracking
 * Clean Code with Modular Architecture (ESP + App)
 
----
 
 ## 🧱 Tech Stack
 
@@ -23,7 +21,6 @@ A **Waterio** system designed using **ESP32**, **Load Cell**, and a **Flutter** 
 * **Communication**: Bluetooth (BLE)  
 * **IDE**: VS Code / Arduino IDE (ESP32), Android Studio (Flutter)
 
----
 
 ## 📂 System Components
 
@@ -44,7 +41,6 @@ A **Waterio** system designed using **ESP32**, **Load Cell**, and a **Flutter** 
    * Displays live sip count and bottle weight
    * Provides hydration stats and daily goals
 
----
 
 ## 📉 Sip Detection Logic
 
@@ -52,15 +48,13 @@ A **Waterio** system designed using **ESP32**, **Load Cell**, and a **Flutter** 
 * Anti-noise filtering ensures accurate sip counting.
 * Daily total sips and water consumed are logged and displayed.
 
----
 
 ## 🖼️ System Screenshots
 
 ![App UI](https://github.com/user-attachments/assets/smart-bottle-app-screenshot.png)
 
-![Circuit](https://github.com/user-attachments/assets/smart-bottle-circuit-diagram.png)
+![Circuit Diagram](https://github.com/user-attachments/assets/4fda9cf7-b404-4c11-8b6a-18f5ed7d9827)
 
----
 
 ## ⚙️ How to Run
 
@@ -91,7 +85,6 @@ A **Waterio** system designed using **ESP32**, **Load Cell**, and a **Flutter** 
    * Connect phone and run the app
    * Pair with ESP32 via Bluetooth
 
----
 
 ## 📜 License
 
